@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masterclass Sales Sprint RFP — Claude vs Grok vs Perplexity</title>
+<style>
+:root{--ink:#0f172a;--mute:#475569;--line:#e2e8f0;--bg:#ffffff;--soft:#f8fafc;--claude:#b45309;--grok:#334155;--pplx:#0f766e;--good:#166534;--mid:#92400e;--bad:#991b1b}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:20px;line-height:1.5}
+header{padding:40px 5vw 24px;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(34px,4.5vw,58px);line-height:1.08;margin:0 0 12px;letter-spacing:-.02em}
+.sub{font-size:22px;color:var(--mute);max-width:1100px}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);display:flex;gap:8px;padding:12px 5vw;overflow-x:auto;z-index:9}
+nav button{font:inherit;font-size:19px;font-weight:600;padding:12px 22px;border:2px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+main{padding:32px 5vw 80px;max-width:1500px}
+section{display:none}section.on{display:block}
+h2{font-size:clamp(30px,3.6vw,46px);margin:0 0 8px;letter-spacing:-.02em}
+h3{font-size:28px;margin:40px 0 10px}
+h4{font-size:23px;margin:26px 0 6px}
+.tag{display:inline-block;font-size:17px;font-weight:700;letter-spacing:.02em;padding:6px 12px;border-radius:8px;color:#fff;margin-bottom:14px}
+.claude{background:var(--claude)}.grok{background:var(--grok)}.pplx{background:var(--pplx)}
+.rule{font-size:21px;background:var(--soft);border-left:6px solid var(--ink);padding:16px 20px;margin:18px 0 30px}
+.idea{border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin:18px 0}
+.idea h4{margin-top:0;font-size:26px}
+.idea ul{margin:8px 0 0;padding-left:24px}
+.idea li{margin:6px 0}
+blockquote{margin:12px 0;padding:14px 18px;background:var(--soft);border-left:4px solid var(--line);font-size:19px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:18px;color:var(--mute);margin-top:12px}
+.meta b{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:16px 0 28px;font-size:18px}
+th,td{border:1px solid var(--line);padding:12px 14px;vertical-align:top;text-align:left}
+th{background:var(--soft);font-size:17px;text-transform:none}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.s{display:inline-block;min-width:54px;text-align:center;font-weight:800;border-radius:8px;padding:4px 8px;color:#fff}
+.s9,.s8{background:var(--good)}.s7,.s6{background:#15803d}.s5,.s4{background:var(--mid)}.s3,.s2,.s1{background:var(--bad)}
+.pick{background:#ecfdf5;border:2px solid #10b981;border-radius:14px;padding:20px 26px;margin:14px 0}
+.pick h4{margin:0 0 6px}
+.warn{background:#fff7ed;border:2px solid #fb923c;border-radius:14px;padding:18px 24px;margin:18px 0}
+.small{font-size:17px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+.kpi .n{font-size:40px;font-weight:800;letter-spacing:-.02em}
+.kpi .l{color:var(--mute);font-size:17px}
+a{color:#1d4ed8}
+@media(max-width:700px){body{font-size:18px}table{font-size:15px}th,td{padding:8px}}
+</style>
+</head>
+<body>
+<header>
+<h1>Masterclass Sales Sprint RFP</h1>
+<div class="sub">Julie Gibson Clark live masterclass · Tuesday Oct 27, 7:00 PM ET · Standard $49 · VIP $79. Three AI tools, ten actions each, judged on realism, cost per purchase, deployment time and projected sales. No email, no SMS, no call center, no Meta ads. Everything is set up by the AI tool; Omri does nothing.</div>
+<div class="small" style="margin-top:10px">Issued Sunday Oct 25, 2026 · 17:10 Israel (10:10 AM ET) · 57 hours to event start · Organizer: Perplexity</div>
+</header>
+<nav>
+<button class="on" data-t="rfp">RFP comparison &amp; decision</button>
+<button data-t="claude">Claude — 10 actions</button>
+<button data-t="grok">Grok — 10 actions</button>
+<button data-t="pplx">Perplexity — 10 actions</button>
+</nav>
+<main>
+
+<!-- ============ RFP TAB ============ -->
+<section id="rfp" class="on">
+<h2>Comparison and decision sheet</h2>
+<p class="sub">Read this page only if you have five minutes. Scores are Perplexity's judgment as organizer, applied with the same rubric to all three submissions including its own.</p>
+
+<h3>Scoring rubric</h3>
+<table>
+<tr><th style="width:26%">Dimension</th><th>What it measures</th></tr>
+<tr><td><b>Realism 1–10</b></td><td>Is this proven, best-practice activity that converts in a 57-hour window, or does it just exist? 8–10 = proven mechanism with the audience already in motion. 4–7 = works sometimes, depends on platform rules, reach or approvals. 1–3 = exists on paper, rarely drives purchases.</td></tr>
+<tr><td><b>Est. CPP</b></td><td>Cash cost per purchase. Organic labor is AI labor and counted as $0 cash. Where a paid medium is used, CPP is derived from stated click cost × stated conversion rate.</td></tr>
+<tr><td><b>Deploy</b></td><td>Minutes from "go" until the action is live and selling, measured from Sunday 17:10 Israel.</td></tr>
+<tr><td><b>Sales by Tue 7 PM ET</b></td><td>Range of purchases the action alone is likely to produce. Ranges are deliberately narrow and conservative; the assumption behind each is in the notes column.</td></tr>
+</table>
+
+<h3>Side by side, by activity type</h3>
+<table>
+<tr><th style="width:15%">Activity type</th><th style="width:28%">Claude</th><th style="width:28%">Perplexity</th><th style="width:29%">Grok</th></tr>
+<tr><td><b>Website / checkout changes</b></td>
+<td>#10 Countdown, Tuesday-only buy path, live chat, Trustpilot block, VIP bonus stack. <span class="s s8">8</span></td>
+<td>#1 Full checkout conversion sprint: countdown, Tuesday-only, real seat count from CRM, Trustpilot, FAQ, mobile sticky buy bar, tracking untouched. #8 Post-purchase "bring a friend" + one-click VIP upgrade. #10 AI concierge chat on checkout. <span class="s s9">9</span></td>
+<td rowspan="7" style="color:var(--mute)">Grok's submission has not been pasted into this thread yet. The moment it is, each of its ten actions is scored with the identical rubric and placed in this column. Nothing in the other two columns changes.</td></tr>
+<tr><td><b>Own channels, organic posts</b></td>
+<td>Not included as a standalone action (channels used only as commenting accounts).</td>
+<td>#2 Julie's own Instagram / X / LinkedIn / Facebook: six ready-to-post pieces and the DM script. #4 Harel, faculty and LLA brand channels (LinkedIn, Facebook page, YouTube community post). #7 Short-form clip blitz from approved Julie video assets. <span class="s s8">8</span></td></tr>
+<tr><td><b>Comments in other people's audiences</b></td>
+<td>#2 Bryan Johnson conversation on every platform. #3 Comments on every podcast/YouTube episode Julie appeared on. #7 Brand comments on 30 top niche posts a day. <span class="s s6">6</span></td>
+<td>#5 Bryan Johnson comment capture, X and YouTube only (where replies are actually seen). <span class="s s6">6</span></td></tr>
+<tr><td><b>Groups and communities</b></td>
+<td>#1 Comment-JULIE photo posts in 40 Facebook groups from Omri's profile. #4 Hot-thread replies, ten a day. #8 Reddit AMA across five subreddits. <span class="s s5">5</span></td>
+<td>#9 Admin-partnership route: DM group admins for a pinned post in exchange for free seats, no mass posting. <span class="s s6">6</span></td></tr>
+<tr><td><b>Paid, non-Meta</b></td>
+<td>None.</td>
+<td>#3 Google Search brand capture on "Julie Gibson Clark", "woman beating Bryan Johnson", "Rejuvenation Olympics leaderboard". <span class="s s8">8</span></td></tr>
+<tr><td><b>Partners / referral</b></td>
+<td>None.</td>
+<td>#6 Podcast-host reactivation: tracked link plus 40% revenue share, one story post each. #8 Buyer referral on the success screen. <span class="s s6">6</span></td></tr>
+<tr><td><b>Ad-comment and listing hygiene</b></td>
+<td>#5 Every comment on every active ad answered within the hour (organic work on existing ads). <span class="s s8">8</span> #6 Facebook Event. <span class="s s4">4</span> #9 Eventbrite / AllEvents / Luma listings. <span class="s s2">2</span></td>
+<td>Folded into #10 concierge (ad-comment replies are routed to the same answer desk).</td></tr>
+</table>
+
+<h3>Every action scored, all 30 slots</h3>
+<table>
+<tr><th>#</th><th>Tool</th><th>Action</th><th>Realism</th><th>Est. CPP</th><th>Deploy</th><th>Sales by Tue</th><th>Why this score</th></tr>
+<tr><td>C1</td><td>Claude</td><td>Comment-JULIE posts in 40 Facebook groups</td><td><span class="s s5">5</span></td><td class="num">$0</td><td class="num">4–12 h</td><td class="num">3–8</td><td>The DM funnel is real practice. But newly joined groups queue posts for admin approval for 1–3 days, most large groups ban promotion outright, and 40 posts from one profile in 48 hours risks a Facebook restriction that kills actions C1, C4 and C6 together.</td></tr>
+<tr><td>C2</td><td>Claude</td><td>Bryan Johnson conversation, every platform</td><td><span class="s s6">6</span></td><td class="num">$0</td><td class="num">1 h</td><td class="num">2–5</td><td>Replies under Bryan Johnson's X posts are genuinely seen (his posts reach millions). Instagram and Threads replies from a small account are buried. The hook (woman beats him for $100 a month) is strong and true.</td></tr>
+<tr><td>C3</td><td>Claude</td><td>Comments on every podcast episode Julie appeared on</td><td><span class="s s5">5</span></td><td class="num">$0</td><td class="num">2 h</td><td class="num">1–3</td><td>Comments on months-old episodes get a trickle of views. Only valuable if the host pins it, which Claude's plan does not request.</td></tr>
+<tr><td>C4</td><td>Claude</td><td>Hot-thread replies inside groups, ten a day</td><td><span class="s s6">6</span></td><td class="num">$0</td><td class="num">4 h</td><td class="num">2–4</td><td>Replying to live DunedinPACE / TruDiagnostic threads is the most natural form of group activity and least likely to be removed. Good templates.</td></tr>
+<tr><td>C5</td><td>Claude</td><td>Every comment on every active ad answered within the hour</td><td><span class="s s8">8</span></td><td class="num">$0</td><td class="num">1 h</td><td class="num">3–6</td><td>Best practice. Unanswered price and "is this legit" questions on ads are lost purchases that were already paid for. This is organic work on existing traffic, not a new Meta spend.</td></tr>
+<tr><td>C6</td><td>Claude</td><td>Facebook Event for Tuesday</td><td><span class="s s4">4</span></td><td class="num">$0</td><td class="num">30 min</td><td class="num">1–2</td><td>Events for paid online classes get RSVPs, not purchases. Useful as a reminder surface only.</td></tr>
+<tr><td>C7</td><td>Claude</td><td>Brand comments on 30 top niche posts a day</td><td><span class="s s5">5</span></td><td class="num">$0</td><td class="num">1 h</td><td class="num">1–3</td><td>Generic "comment JULIE" under Huberman and Attia posts reads as spam to those audiences and is often hidden by the creator's filters.</td></tr>
+<tr><td>C8</td><td>Claude</td><td>Reddit AMA, five subreddits</td><td><span class="s s4">4</span></td><td class="num">$0</td><td class="num">2 h</td><td class="num">0–3</td><td>r/longevity and r/Supplements remove self-promotion from day-old accounts within minutes. r/Biohackers tolerates it. The upside exists only if a post survives and gets to the top, which a new account rarely achieves.</td></tr>
+<tr><td>C9</td><td>Claude</td><td>Eventbrite / AllEvents / Luma listings</td><td><span class="s s2">2</span></td><td class="num">$0</td><td class="num">30 min</td><td class="num">0–1</td><td>Listings sit there. Nobody searches Eventbrite for a longevity Zoom class on a Tuesday night.</td></tr>
+<tr><td>C10</td><td>Claude</td><td>Checkout changes: countdown, Tuesday-only, chat, Trustpilot, VIP stack</td><td><span class="s s8">8</span></td><td class="num">$0</td><td class="num">60–90 min</td><td class="num">+15–20% on all traffic</td><td>Correct and compounding: every other action pushes traffic into this page. Removing the Nov 14 option is the single most powerful urgency change available.</td></tr>
+<tr><td>P1</td><td>Perplexity</td><td>Checkout conversion sprint, tracking untouched</td><td><span class="s s9">9</span></td><td class="num">$0</td><td class="num">60–90 min</td><td class="num">+15–25% on all traffic</td><td>Same levers as C10 plus a real seat counter fed from CRM order count, FAQ answering the five objections already seen in ad comments, and a mobile sticky buy bar. Deployed from the existing GitHub repo; CAPI and pixel files not touched.</td></tr>
+<tr><td>P2</td><td>Perplexity</td><td>Julie's own channels: six ready-to-post pieces plus DM script</td><td><span class="s s8">8</span></td><td class="num">$0</td><td class="num">45 min to hand over</td><td class="num">8–20</td><td>Julie's followers are the warmest audience on earth for this and have never been sold the class directly. Assumption: Julie posts 3 of 6 pieces within 24 hours. Depends on one person, which is the only reason this is not a 10.</td></tr>
+<tr><td>P3</td><td>Perplexity</td><td>Google Search brand capture</td><td><span class="s s8">8</span></td><td class="num">$15–45</td><td class="num">45 min after account access</td><td class="num">6–15</td><td>People searching her name after Fortune and podcast coverage are high intent. CPC $0.80–2.00 on these terms, 4–8% conversion from a brand search to a $49 purchase. Daily cap $150. Not Meta, not email. Attribution survives via the existing cid parameter.</td></tr>
+<tr><td>P4</td><td>Perplexity</td><td>Harel, faculty and LLA brand channel posts</td><td><span class="s s7">7</span></td><td class="num">$0</td><td class="num">30 min to hand over</td><td class="num">3–8</td><td>Drafts already exist from the executive-social package; LinkedIn reaches the 50+ professional audience that buys $49 classes without hesitation. Assumption: Harel posts once.</td></tr>
+<tr><td>P5</td><td>Perplexity</td><td>Bryan Johnson comment capture, X and YouTube only</td><td><span class="s s6">6</span></td><td class="num">$0</td><td class="num">1 h</td><td class="num">2–5</td><td>Same mechanism as C2, narrowed to the two platforms where replies are visible. Fewer comments, each with the Fortune screenshot attached.</td></tr>
+<tr><td>P6</td><td>Perplexity</td><td>Podcast-host reactivation with tracked link and 40% share</td><td><span class="s s6">6</span></td><td class="num">$20 (commission)</td><td class="num">2 h to send, 24 h to land</td><td class="num">3–10</td><td>Hosts who already liked Julie will post a story for a cut. 48 hours is short; expect 3–5 of 30 hosts to act. Each one that does reaches thousands of pre-warmed listeners.</td></tr>
+<tr><td>P7</td><td>Perplexity</td><td>Short-form clip blitz from approved Julie videos</td><td><span class="s s5">5</span></td><td class="num">$0</td><td class="num">3 h</td><td class="num">1–4</td><td>Assets exist, cutting is fast. LLA accounts are small so reach is low; the value is giving Julie and hosts ready clips to repost (feeds P2 and P6).</td></tr>
+<tr><td>P8</td><td>Perplexity</td><td>Post-purchase referral and one-click VIP upgrade</td><td><span class="s s6">6</span></td><td class="num">$0</td><td class="num">60 min</td><td class="num">2–4 plus VIP upgrades</td><td>131 buyers already, plus every new one, see a share button at the exact moment of highest enthusiasm. Small, certain, free.</td></tr>
+<tr><td>P9</td><td>Perplexity</td><td>Group admin partnership instead of mass posting</td><td><span class="s s6">6</span></td><td class="num">$5–10 (free seats)</td><td class="num">3 h to send, 24 h to land</td><td class="num">2–6</td><td>One pinned admin post in a 50k-member menopause group beats 20 drive-by posts and carries zero account risk. Expect 2–4 of 25 admins to say yes.</td></tr>
+<tr><td>P10</td><td>Perplexity</td><td>AI concierge: checkout chat plus ad-comment answer desk</td><td><span class="s s7">7</span></td><td class="num">$0</td><td class="num">60 min</td><td class="num">2–5</td><td>Answers the "is it recorded", "what time in my zone", "is Julie really live" questions at the point of hesitation, and takes over the ad-comment replies in C5.</td></tr>
+<tr><td>G1–G10</td><td>Grok</td><td colspan="6" style="color:var(--mute)">Scored the moment the submission is pasted.</td></tr>
+</table>
+
+<h3>Recommended six</h3>
+<p>Chosen for highest impact per hour of deployment, lowest dependency on platform tolerance, and zero overlap. Mixed across tools; the tool that owns each is named.</p>
+<div class="pick"><h4>1. Checkout conversion sprint — Perplexity P1 (absorbs Claude C10)</h4>Compounds every other action. Live in 90 minutes. Tracking files untouched.</div>
+<div class="pick"><h4>2. Julie's own channels — Perplexity P2</h4>Largest single pool of warm buyers. Six posts and the DM script handed to Julie as copy-paste text within 45 minutes.</div>
+<div class="pick"><h4>3. Google Search brand capture — Perplexity P3</h4>The only action here with intent-based paid reach and a CPP under the ticket price. Requires Google Ads account access once.</div>
+<div class="pick"><h4>4. Ad comments answered within the hour — Claude C5, run by the concierge desk in Perplexity P10</h4>Recovers purchases that were already paid for. Hour-one deliverable is the comment table.</div>
+<div class="pick"><h4>5. Harel, faculty and LLA brand channels — Perplexity P4</h4>Drafts exist. One LinkedIn post from the CEO plus the LLA Facebook page and YouTube community post.</div>
+<div class="pick"><h4>6. Bryan Johnson comment capture plus hot-thread replies — Claude C2 and C4, narrowed to X, YouTube and live group threads</h4>Claude's strongest community ideas, kept where they are visible and safe. Mass group posting (C1), Reddit (C8), listings (C9) and the Facebook Event (C6) are left out.</div>
+
+<h3>Projection for the recommended six</h3>
+<div class="grid">
+<div class="kpi"><div class="n">Sun 17:10</div><div class="l">Start, Israel time</div></div>
+<div class="kpi"><div class="n">90 min</div><div class="l">Checkout sprint and concierge live (18:40 Israel / 11:40 AM ET)</div></div>
+<div class="kpi"><div class="n">2 h</div><div class="l">Julie, Harel and faculty posts handed over; Google Search campaign built and waiting for account access</div></div>
+<div class="kpi"><div class="n">24–45</div><div class="l">Incremental purchases expected Sunday through Tuesday 7 PM ET from the six, excluding existing paid-social baseline</div></div>
+</div>
+<table>
+<tr><th>Window</th><th>What is live</th><th>Incremental sales (low–high)</th></tr>
+<tr><td>Sunday (remaining 13 hours ET)</td><td>Checkout sprint, concierge, ad-comment desk, Bryan Johnson replies, Julie post 1 if she posts same day</td><td class="num">4–9</td></tr>
+<tr><td>Monday</td><td>All six live; Google Search running full day; Julie and Harel posts compounding; hot threads</td><td class="num">11–20</td></tr>
+<tr><td>Tuesday until 7 PM ET</td><td>"Starts tonight" round on every channel; Google Search at peak brand intent; last-seats urgency on checkout</td><td class="num">9–16</td></tr>
+<tr><td><b>Total</b></td><td></td><td class="num"><b>24–45</b></td></tr>
+</table>
+<div class="warn"><b>Straight talk on scale.</b> The current roster is about 131 orders against a 350 target for this date. No organic sprint closes that gap in 57 hours; organic plus brand search adds tens, not hundreds. The two levers that move the number most are Julie posting herself and the checkout conversion sprint, because both act on people who already want this. Everything else is additive. If the goal is hundreds, the lever is paid budget, which is outside this RFP by your instruction.</div>
+
+<h3>Decision</h3>
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Which six</td><td>P1, P2, P3, C5 via P10, P4, C2 plus C4 (narrowed)</td></tr>
+<tr><td>Which tool executes</td><td>Perplexity executes P1, P2, P3, P4, P10 and the C2/C4 commenting from LLA accounts. Claude's plan is credited for C5, C2, C4 and C10 and may run the commenting track in parallel if you prefer two hands on it.</td></tr>
+<tr><td>What you do</td><td>Paste Grok's submission. Approve the six with one word. Forward two ready messages (Julie, Harel) that will be handed to you as copy-paste text. Grant Google Ads access once.</td></tr>
+<tr><td>First checkpoint</td><td>18:40 Israel: checkout sprint live, ad-comment table delivered, posts handed over.</td></tr>
+</table>
+</section>
+
+<!-- ============ CLAUDE TAB ============ -->
+<section id="claude">
+<span class="tag claude">Submission: Claude</span>
+<h2>Julie Masterclass, Tuesday Oct 27, 7 PM ET. Ten actions, each specified to the click.</h2>
+<div class="rule"><b>Shared rule for all of them:</b> the only call to action in public is "comment JULIE." The link, the price and the brand live in the DM. Every comment and DM is answered within 15 minutes from the moment it lands until Tuesday 7 PM ET. Every link is tagged by source so each action shows its own sales.</div>
+
+<div class="idea"><h4>1. Comment-JULIE posts in 40 groups, from your profile</h4>
+<ul>
+<li>Account: your Facebook, bio line added today: "Working with Julie Gibson Clark's team at Longevity Life Academy."</li>
+<li>Groups, first wave, the ones you are already in. Second wave, joined today, 10 an hour: Menopause Support Group, Menopause Matters, Feel Good Menopause, Intermittent Fasting for Women, Intermittent Fasting Lifestyle, Women Over 50 Weight Loss, Walking for Weight Loss Over 50, Fab Over 50, Age Reversal Protocols, Anti Aging Biohacking and Longevity, BioHackers Global, Blueprint and Bryan Johnson fan groups, Dr. Hyman, Dr. Gundry and Dr. Berg fan groups, Oura and WHOOP user groups, Nurses groups, Baby Boomers groups, Christian women 50 plus groups. Any group under 10,000 members or that blocks member posts is dropped on sight.</li>
+<li>The post, posted as a photo post with the Fortune headline screenshot:
+<blockquote>I keep seeing Bryan Johnson spending $2M a year to age slower. Fortune covered a 55-year-old from Phoenix, Julie Gibson Clark, who is ahead of him on the leaderboard for about $100 a month. Her pace of aging is 0.665, so she ages about 8 months for every 12. I work with her team. She's teaching her exact protocol live this Tuesday night. If you want the details, comment JULIE and I'll message you.</blockquote></li>
+<li>Public reply to every comment: "Sent you a message." DM:
+<blockquote>Here it is: Tuesday Oct 27, 7 PM ET, live on Zoom, she walks through her protocol and her numbers and answers questions at the end. $49. [tagged link]. If you have a question before you decide, ask me here.</blockquote></li>
+<li>Timing: posts at 7 to 9 AM and 7 to 9 PM Eastern, two groups per hour so nothing looks automated. Day two post: a photo of her protocol card, "I asked her what she eats, this is what she said, comment JULIE." Tuesday noon: "starts tonight 7 ET, last seats."</li>
+<li>Volume: 40 posts over the window. Measure: comments per post, DMs sent, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>5/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>4–12 h</b></span><span>Sales by Tue <b>3–8</b></span></div></div>
+
+<div class="idea"><h4>2. The Bryan Johnson conversation, every platform</h4>
+<ul>
+<li>Accounts: Longevity Life Academy page on Facebook, academy Instagram, academy Threads, academy X, academy YouTube.</li>
+<li>Targets, checked every three hours: every new post by Bryan Johnson, every post by Fortune, Business Insider, Huberman, Attia, Hyman, Haver, Berg that mentions aging or him, every post with over 50,000 views about him.</li>
+<li>The comment:
+<blockquote>A 55-year-old woman from Phoenix is ahead of him on this leaderboard spending about $100 a month. Fortune covered her. Pace of aging 0.665. She's teaching how, live Tuesday 7 PM ET. Comment JULIE and we'll send the details.</blockquote></li>
+<li>Keep-alive: I reply to every reply on our comment, which keeps it near the top for hours.</li>
+<li>Volume: 20 to 30 comments a day. Measure: replies on our comment, DMs, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>6/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>1 h</b></span><span>Sales by Tue <b>2–5</b></span></div></div>
+
+<div class="idea"><h4>3. Every podcast and YouTube episode Julie has appeared on</h4>
+<ul>
+<li>Account: academy YouTube and academy Instagram.</li>
+<li>Targets: every YouTube episode, Instagram Reel and TikTok where Julie was the guest or the subject, found by searching her name on each platform. Thirty to fifty pieces.</li>
+<li>The comment: "Julie is teaching her full protocol live this Tuesday Oct 27 at 7 PM ET. Comment JULIE and we'll send the details." Plus a reply to the top three existing comments that ask "what does she do."</li>
+<li>Done in the first two hours. Measure: replies, DMs, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>5/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>2 h</b></span><span>Sales by Tue <b>1–3</b></span></div></div>
+
+<div class="idea"><h4>4. Hot threads inside groups, ten a day</h4>
+<ul>
+<li>Search inside each group for: DunedinPACE, TruDiagnostic, biological age, Bryan Johnson, Blueprint, NMN, rapamycin, "what do you take."</li>
+<li>Pick threads with the most comments in the last 24 hours.</li>
+<li>Three reply templates, picked by thread type:
+<ul>
+<li>Test result posted: "That's a good number. The three things that moved Julie's from 0.8 to 0.665 were sleep timing, Zone 2 four times a week and protein at 1.6 g per kg. She goes through all of it live Tuesday, comment JULIE if you want the details."</li>
+<li>Bryan Johnson argument: "Worth knowing a woman is ahead of him for about $100 a month. Fortune covered her. She's teaching it Tuesday, comment JULIE."</li>
+<li>Supplement question: "Julie takes creatine, omega-3, vitamin D and skips most of the rest, her numbers are public. She explains why live Tuesday, comment JULIE."</li>
+</ul></li>
+<li>Measure: replies and DMs per thread.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>6/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>4 h</b></span><span>Sales by Tue <b>2–4</b></span></div></div>
+
+<div class="idea"><h4>5. Every comment on every active ad, answered within the hour</h4>
+<ul>
+<li>Account: academy page via Ads Manager and the page inbox.</li>
+<li>First deliverable in hour one: a table of every comment on every active Masterclass and Blueprint ad, columns campaign, ad, comment time, commenter, text, answered yes or no, proposed reply.</li>
+<li>Reply style, approved once by you: direct answer, date and time, "message us for the link." Price questions answered openly: "$49, live Tuesday 7 PM ET."</li>
+<li>Then every new comment answered inside the hour through Tuesday night. Measure: comments answered, DMs from ads, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>8/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>1 h</b></span><span>Sales by Tue <b>3–6</b></span></div></div>
+
+<div class="idea"><h4>6. Facebook Event for Tuesday</h4>
+<ul>
+<li>Created on the academy page: title "Julie Gibson Clark Live: Her Protocol and Her Numbers," cover image from the dates card, description with the time and the Fortune line, ticket link.</li>
+<li>Shared into every group from action 1 that allows events, as a share with a one-line personal note.</li>
+<li>Every RSVP gets Facebook's own reminder Tuesday afternoon. The event wall is answered like a group post.</li>
+<li>Measure: RSVPs, event-wall comments, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>4/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>30 min</b></span><span>Sales by Tue <b>1–2</b></span></div></div>
+
+<div class="idea"><h4>7. Brand comments on the 30 biggest niche posts a day, beyond Bryan Johnson</h4>
+<ul>
+<li>Accounts: academy page and Instagram.</li>
+<li>Targets: top posts of the day by Huberman, Attia, Hyman, Haver, Berg, Gundry, Sinclair, Glucose Goddess, Flipping 50, and the Fortune and Business Insider accounts, picked by comment count.</li>
+<li>Comment: one line tied to that post's topic, then "Julie is teaching this live Tuesday 7 PM ET, comment JULIE."</li>
+<li>Keep-alive replies as in action 2. Measure: replies, DMs, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>5/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>1 h</b></span><span>Sales by Tue <b>1–3</b></span></div></div>
+
+<div class="idea"><h4>8. Reddit, transparent</h4>
+<ul>
+<li>Account: a team account named for the academy, created today, bio states who we are.</li>
+<li>Subreddits: r/longevity, r/Biohackers, r/Menopause, r/AskWomenOver40, r/Supplements.</li>
+<li>Post title: "I work with Julie Gibson Clark, the 55-year-old ahead of Bryan Johnson on the Rejuvenation Olympics leaderboard for about $100 a month. Ask me anything about her protocol."</li>
+<li>Body: her numbers, what she does, one line at the end: "She's teaching it live Tuesday 7 PM ET, details in my profile."</li>
+<li>Every question answered for six hours. Measure: upvotes, profile clicks, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>4/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>2 h</b></span><span>Sales by Tue <b>0–3</b></span></div></div>
+
+<div class="idea"><h4>9. Event listings, 30 minutes</h4>
+<ul>
+<li>Eventbrite, AllEvents, Luma. Online event, Tuesday 7 PM ET, $49, description from the Event, link to checkout.</li>
+<li>Measure: listing views, sales by tag.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>2/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>30 min</b></span><span>Sales by Tue <b>0–1</b></span></div></div>
+
+<div class="idea"><h4>10. Checkout changes, your decision</h4>
+<ul>
+<li>Countdown to Tuesday 7 PM ET at the top of the page and on checkout.</li>
+<li>Tuesday only on the buy path. The Nov 14 date is removed from checkout.</li>
+<li>Live chat button on checkout, answered by me.</li>
+<li>Trustpilot block beside the buy button.</li>
+<li>Optional, same price: VIP bonus stack listed as four items, gift with purchase before Tuesday, one-click VIP add-on after purchase.</li>
+</ul>
+<div class="meta"><span>Organizer score <b>8/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>60–90 min</b></span><span>Sales by Tue <b>+15–20% conversion on all traffic</b></span></div></div>
+
+<h3>Today's order (as submitted)</h3>
+<table>
+<tr><th>Hour</th><th>Done</th></tr>
+<tr><td>1</td><td>Setup, ad comment table, Facebook Event, listings, bio line</td></tr>
+<tr><td>2 to 4</td><td>Posts in groups you are already in, Bryan Johnson comments, podcast comments</td></tr>
+<tr><td>4 to 12</td><td>Group joins approve, posts go out, hot threads, Reddit post, all replies within 15 minutes</td></tr>
+<tr><td>Day two morning</td><td>Protocol-card post round, summary to you</td></tr>
+<tr><td>Tuesday noon</td><td>"Starts tonight" round in every group and the Event</td></tr>
+</table>
+<p><b>What you see.</b> The ad comment table in hour one. One live sheet: source, reach, comments, DMs, sales by tag. Summary every morning and Tuesday at noon.</p>
+</section>
+
+<!-- ============ GROK TAB ============ -->
+<section id="grok">
+<span class="tag grok">Submission: Grok</span>
+<h2>Grok — 10 actions</h2>
+<div class="warn"><b>Not yet received.</b> Grok's ten recommendations were not included in the brief handed to the organizer. Paste them into the thread and this tab is populated verbatim, each action scored with the same rubric, and the comparison tab's Grok column filled, within 60 seconds of receipt. No other tab changes.</div>
+</section>
+
+<!-- ============ PERPLEXITY TAB ============ -->
+<section id="pplx">
+<span class="tag pplx">Submission: Perplexity</span>
+<h2>Ten actions that act on people who already want this</h2>
+<div class="rule"><b>Operating principle:</b> in 57 hours, the purchases come from three pools in this order: people already on the page, people who already follow Julie, and people actively searching her name. Cold communities are fourth. Every action below is ranked by how directly it touches those pools, and every link carries its own source tag so each action shows its own sales. Tracking, pixel and CAPI code are not touched by any action.</div>
+
+<div class="idea"><h4>1. Checkout conversion sprint</h4>
+<ul>
+<li>Countdown to Tuesday Oct 27, 7:00 PM ET, shown in the visitor's own time zone, at the top of the page and above the pay button.</li>
+<li>Tuesday-only buy path. Nov 14 is removed from the public cards and from checkout until Tuesday night.</li>
+<li>Real seat counter: "131 enrolled" read from the CRM paid-order count, updated hourly. True numbers only.</li>
+<li>Trustpilot mark and three real statistics moved beside the pay button; press logos directly under it.</li>
+<li>FAQ of the five objections already seen in ad comments: is it live, is it recorded (yes, 30 days), what time in my zone, is this Julie herself, what's the refund rule.</li>
+<li>Mobile sticky buy bar with price and countdown; visible on every scroll position.</li>
+<li>Deployed from the existing checkout repository; payment and tracking files excluded from the commit by path.</li>
+</ul>
+<div class="meta"><span>Realism <b>9/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>60–90 min</b></span><span>Sales by Tue <b>+15–25% conversion on all traffic</b></span></div></div>
+
+<div class="idea"><h4>2. Julie's own channels, six ready-to-post pieces</h4>
+<ul>
+<li>Instagram feed post with the Fortune headline and her pace-of-aging number; caption ends "Tuesday 7 PM ET, link in bio, or comment JULIE."</li>
+<li>Three Instagram stories with a link sticker: the invitation, "what I'll show you", "last day".</li>
+<li>One X thread: five tweets, her numbers, what $100 a month buys, the Tuesday link.</li>
+<li>One LinkedIn post in her voice for the professional 45–65 audience.</li>
+<li>One Facebook post for her personal profile.</li>
+<li>DM reply script for every "JULIE" comment, with the tagged link and price.</li>
+<li>Handed to Omri as one message to forward to Julie: each piece pre-sized to the platform limit, images attached.</li>
+</ul>
+<div class="meta"><span>Realism <b>8/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>45 min to hand over</b></span><span>Sales by Tue <b>8–20, assuming Julie posts 3 of 6</b></span></div></div>
+
+<div class="idea"><h4>3. Google Search brand capture</h4>
+<ul>
+<li>One search campaign, exact and phrase match only: "Julie Gibson Clark", "Julie Clark longevity", "woman beating Bryan Johnson", "Rejuvenation Olympics leaderboard", "slowest aging woman", "Bryan Johnson $100 a month".</li>
+<li>Ad copy: "Julie Gibson Clark Live Tuesday · Her exact $100/month protocol · $49 · Recording included 30 days."</li>
+<li>Landing: the masterclass page with a source tag; attribution flows through the existing cid parameter.</li>
+<li>Daily cap $150, US and Canada, Sunday through Tuesday 7 PM ET. Expected CPC $0.80–2.00, conversion 4–8%, CPP $15–45.</li>
+<li>Built and ready in 45 minutes; goes live the moment Google Ads account access is granted.</li>
+</ul>
+<div class="meta"><span>Realism <b>8/10</b></span><span>Est. CPP <b>$15–45</b></span><span>Deploy <b>45 min + account access</b></span><span>Sales by Tue <b>6–15</b></span></div></div>
+
+<div class="idea"><h4>4. Harel, faculty and LLA brand channels</h4>
+<ul>
+<li>Harel LinkedIn post (CEO voice, from the existing executive-social drafts, corrected to Tuesday-only and the 30-day recording rule).</li>
+<li>Two faculty LinkedIn posts in their own voice.</li>
+<li>LLA Facebook page post, LLA YouTube community post, LLA Instagram post and stories, all with the tagged link.</li>
+<li>Handed as copy-paste text per person; LLA accounts posted directly.</li>
+</ul>
+<div class="meta"><span>Realism <b>7/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>30 min</b></span><span>Sales by Tue <b>3–8</b></span></div></div>
+
+<div class="idea"><h4>5. Bryan Johnson comment capture, X and YouTube only</h4>
+<ul>
+<li>Every new Bryan Johnson post on X and every new video on his YouTube channel, within 30 minutes of publication, from the LLA accounts.</li>
+<li>Reply carries the Fortune screenshot and one line: "A 55-year-old woman is ahead of him on this leaderboard on about $100 a month. She's teaching it live Tuesday 7 PM ET. Comment JULIE for the details."</li>
+<li>Also under Fortune and Business Insider posts about him. Instagram and Threads skipped: replies there from a small account are not seen.</li>
+<li>Every reply to our reply answered, keeping the thread alive.</li>
+</ul>
+<div class="meta"><span>Realism <b>6/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>1 h</b></span><span>Sales by Tue <b>2–5</b></span></div></div>
+
+<div class="idea"><h4>6. Podcast-host reactivation</h4>
+<ul>
+<li>List of every host who has had Julie on (YouTube, Spotify, Apple), 30–50 names, built in the first hour.</li>
+<li>One DM per host on the platform where they are most active: "Julie is teaching her full protocol live Tuesday. Here is a tracked link with 40% of every sale to you. One story post is enough. Clips attached."</li>
+<li>Each host gets a unique tagged link so their payout is provable.</li>
+<li>Expect 3–5 of 30 to post within 24 hours; each reaches thousands of listeners who already heard Julie's story.</li>
+</ul>
+<div class="meta"><span>Realism <b>6/10</b></span><span>Est. CPP <b>$20 commission</b></span><span>Deploy <b>2 h to send, 24 h to land</b></span><span>Sales by Tue <b>3–10</b></span></div></div>
+
+<div class="idea"><h4>7. Short-form clip blitz</h4>
+<ul>
+<li>Six 20–40 second vertical clips cut from the approved Julie video assets: her number, the $100 figure, the one habit, the Bryan Johnson line, "what I eat", "Tuesday".</li>
+<li>Posted to LLA Instagram Reels, TikTok and YouTube Shorts with "comment JULIE"; sent to Julie and to the hosts in action 6 for reposting.</li>
+</ul>
+<div class="meta"><span>Realism <b>5/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>3 h</b></span><span>Sales by Tue <b>1–4 directly; feeds actions 2 and 6</b></span></div></div>
+
+<div class="idea"><h4>8. Post-purchase referral and one-click VIP upgrade</h4>
+<ul>
+<li>Success screen gets a "Bring a friend Tuesday" button with a pre-written share message and a tagged link.</li>
+<li>Standard buyers see a one-click VIP upgrade for the $30 difference on the success screen.</li>
+<li>Zero changes to the payment or tracking code; the success screen is presentation only.</li>
+</ul>
+<div class="meta"><span>Realism <b>6/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>60 min</b></span><span>Sales by Tue <b>2–4 plus VIP upgrades</b></span></div></div>
+
+<div class="idea"><h4>9. Group admin partnership</h4>
+<ul>
+<li>25 admins of menopause, women-over-50 and longevity Facebook groups with 20k+ members, DM'd from the LLA page: "Two free seats for your community and a pinned post from you, no cost, here is the text."</li>
+<li>Admin posts in their own voice; the group sees an endorsement, not an ad. Zero account risk, no removal.</li>
+<li>Expect 2–4 of 25 to say yes within 24 hours.</li>
+</ul>
+<div class="meta"><span>Realism <b>6/10</b></span><span>Est. CPP <b>$5–10 in free seats</b></span><span>Deploy <b>3 h to send, 24 h to land</b></span><span>Sales by Tue <b>2–6</b></span></div></div>
+
+<div class="idea"><h4>10. AI concierge: checkout chat and ad-comment desk</h4>
+<ul>
+<li>Chat widget on the masterclass page and checkout, answering the FAQ in action 1 and handing the tagged link, 24 hours a day until Tuesday 7 PM ET.</li>
+<li>The same desk answers every comment on every active ad within the hour, with the hour-one comment table as its first deliverable.</li>
+<li>Every unanswered question is a lost purchase that was already paid for; this closes that leak.</li>
+</ul>
+<div class="meta"><span>Realism <b>7/10</b></span><span>Est. CPP <b>$0</b></span><span>Deploy <b>60 min</b></span><span>Sales by Tue <b>2–5</b></span></div></div>
+
+<h3>Deployment order from "go"</h3>
+<table>
+<tr><th>Clock (Israel)</th><th>Live</th></tr>
+<tr><td>+0 to +90 min</td><td>Action 1 checkout sprint, action 10 concierge and ad-comment table, action 5 first Bryan Johnson replies</td></tr>
+<tr><td>+45 min</td><td>Action 2 Julie's six pieces and action 4 Harel/faculty/LLA texts handed over; LLA accounts posted</td></tr>
+<tr><td>+45 min</td><td>Action 3 Google Search campaign built; live on account access</td></tr>
+<tr><td>+2 h</td><td>Action 6 host DMs sent, action 8 success-screen referral live</td></tr>
+<tr><td>+3 h</td><td>Action 7 clips posted and distributed, action 9 admin DMs sent</td></tr>
+<tr><td>Mon 09:00</td><td>Sales-by-tag sheet, first summary</td></tr>
+<tr><td>Tue 19:00 Israel (noon ET)</td><td>"Starts tonight" round on every channel; final push on checkout</td></tr>
+</table>
+<p><b>Projection, all ten:</b> 30–55 incremental purchases Sunday through Tuesday 7 PM ET, excluding the existing paid-social baseline, with actions 1, 2 and 3 producing more than half.</p>
+</section>
+</main>
+<script>
+const bs=document.querySelectorAll('nav button'),ss=document.querySelectorAll('main section');
+bs.forEach(b=>b.onclick=()=>{bs.forEach(x=>x.classList.remove('on'));ss.forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');window.scrollTo(0,0);history.replaceState(null,'','#'+b.dataset.t)});
+const h=location.hash.slice(1);if(h&&document.getElementById(h)){document.querySelector('[data-t="'+h+'"]').click()}
+</script>
+</body>
+</html>
