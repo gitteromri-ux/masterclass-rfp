@@ -15,7 +15,7 @@ nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);di
 nav button{font:inherit;font-size:19px;font-weight:600;padding:12px 22px;border:2px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;white-space:nowrap}
 nav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 main{padding:32px 5vw 80px;max-width:1500px}
-section{display:none}section.on{display:block}
+section{display:none;scroll-margin-top:100px}section.on{display:block}
 h2{font-size:clamp(30px,3.6vw,46px);margin:0 0 8px;letter-spacing:-.02em}
 h3{font-size:28px;margin:40px 0 10px}
 h4{font-size:23px;margin:26px 0 6px}
@@ -404,7 +404,7 @@ a{color:#1d4ed8}
 <script>
 const bs=document.querySelectorAll('nav button'),ss=document.querySelectorAll('main section');
 bs.forEach(b=>b.onclick=()=>{bs.forEach(x=>x.classList.remove('on'));ss.forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');window.scrollTo(0,0);history.replaceState(null,'','#'+b.dataset.t)});
-const h=location.hash.slice(1);if(h&&document.getElementById(h)){document.querySelector('[data-t="'+h+'"]').click()}
+const h=location.hash.slice(1);if(h&&document.getElementById(h)){document.querySelector('[data-t="'+h+'"]').click();setTimeout(()=>window.scrollTo(0,0),50)}
 </script>
 </body>
 </html>
