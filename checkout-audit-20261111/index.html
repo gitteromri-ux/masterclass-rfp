@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>LLA Checkout Audit, 11 Nov 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b1630;--soft:#3d4a66;--line:#d9e0ec;--bg:#f7f9fc;--navy:#0f2350;--blue:#1d6bff;--glow:#7fb2ff;--red:#e0433a;--green:#139a63;--amber:#d98a00}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body,li,p{overflow-wrap:anywhere}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:22px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:400;line-height:1.12}
+h1{font-size:clamp(44px,9vw,84px)}
+h2{font-size:clamp(36px,7vw,60px);margin-bottom:28px}
+h3{font-weight:500;font-size:28px;margin:36px 0 14px}
+p{margin-bottom:20px}
+.hero{background:radial-gradient(120% 90% at 20% 0%,#1d3d8a 0%,var(--navy) 55%,#081534 100%);color:#fff;padding:72px 0 64px}
+.hero .date{font-size:22px;color:#b9cdf7;margin-bottom:22px}
+.hero h1{margin-bottom:28px;text-shadow:0 0 38px rgba(127,178,255,.45)}
+.hero .verdict{font-size:clamp(25px,4.6vw,32px);color:#e6eeff;max-width:860px}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+section.dark{background:var(--navy);color:#fff;border-bottom:none}
+section.dark .soft{color:#b9cdf7}
+.soft{color:var(--soft)}
+ul.big{list-style:none}
+ul.big li{position:relative;padding-left:40px;margin-bottom:22px;font-size:25px}
+ul.big li:before{content:"";position:absolute;left:4px;top:.55em;width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:0 0 14px var(--glow)}
+ul.big.red li:before{background:var(--red);box-shadow:0 0 14px rgba(224,67,58,.6)}
+ul.big.green li:before{background:var(--green);box-shadow:0 0 14px rgba(19,154,99,.55)}
+.stat{display:flex;flex-direction:column;gap:30px;margin-top:10px}
+.dev{border-left:6px solid var(--blue);padding:6px 0 6px 24px}
+.dev:nth-child(2){border-color:#8a5cff}.dev:nth-child(3){border-color:#00b3a4}
+.dev .name{font-size:28px;font-weight:500;margin-bottom:8px}
+.dev .row{font-size:24px;color:var(--soft)}
+.dev .row span{color:var(--ink);font-weight:500}
+.dev .key{font-size:44px;font-weight:500;color:var(--red);line-height:1.1;margin:8px 0 4px}
+.dark .dev .row{color:#b9cdf7}.dark .dev .row span{color:#fff}
+.flow{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.step{display:flex;gap:20px;align-items:flex-start}
+.dot{flex:none;width:22px;height:22px;border-radius:50%;margin-top:9px}
+.ok{background:var(--green);box-shadow:0 0 16px rgba(19,154,99,.7)}
+.no{background:var(--red);box-shadow:0 0 16px rgba(224,67,58,.75)}
+.na{background:var(--amber);box-shadow:0 0 16px rgba(217,138,0,.6)}
+.step .t{font-size:25px}.step .s{font-size:21px;color:#b9cdf7}
+.tabs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.tabs a{font-size:22px;color:var(--blue);text-decoration:none;border-bottom:2px solid var(--blue);padding-bottom:2px;margin-right:18px}
+.shots{display:flex;flex-direction:column;gap:46px}
+figure{margin:0}
+figure img{width:100%;max-width:560px;display:block;border-radius:22px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(15,35,80,.16)}
+figcaption{font-size:24px;margin-top:16px;max-width:560px}
+figcaption .n{color:var(--blue);font-weight:500;margin-right:8px}
+.note{font-size:21px;color:var(--soft)}
+footer{padding:48px 0 80px;font-size:20px;color:var(--soft)}
+@media(min-width:900px){.shots{display:grid;grid-template-columns:1fr 1fr;gap:56px 44px}}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+<div class="date">Longevity Life Academy, Blueprint checkout. Wednesday 11 November 2026, Israel time</div>
+<h1>Checkout works end to end. It is slow, and Meta loses the buyer after the Enroll click.</h1>
+<p class="verdict">Tested inside the Facebook app browser on three iPhones, from the homepage to a live Airwallex card form. Buyers wait about 10 seconds after Continue before they can type a card, and no Lead, AddToCart or InitiateCheckout event reaches Meta.</p>
+</div></header>
+
+<section><div class="wrap">
+<h2>How it was tested</h2>
+<ul class="big">
+<li>Cloud iPhone browser on the Safari engine, at iPhone 15 Pro Max, iPhone 15 and iPhone 14 screen sizes.</li>
+<li>Each phone carried the Facebook iOS app browser signature. Feed and Reels open the same in-app browser, so one run covers both.</li>
+<li>Full flow on each phone: homepage, Enroll, your details, plan and date, payment page, card form loaded. No card entered, nothing charged.</li>
+<li>Timings ran on a fast cloud connection. On 4G inside the Facebook app expect slower.</li>
+<li>This is a simulation, not BrowserStack physical phones.</li>
+</ul>
+</div></section>
+
+<section class="dark"><div class="wrap">
+<h2>Seconds, from tapping Continue on step 2</h2>
+<div class="stat">
+<div class="dev"><div class="name">iPhone 15 Pro Max</div>
+<div class="key">10.6s to card fields</div>
+<div class="row">Payment page <span>1.6s</span>. Price shown <span>5.3s</span>. Step 1 to step 2 <span>2.3s</span>.</div></div>
+<div class="dev"><div class="name">iPhone 15</div>
+<div class="key">10.1s to card fields</div>
+<div class="row">Payment page <span>1.4s</span>. Price shown <span>4.8s</span>. Step 1 to step 2 <span>1.4s</span>.</div></div>
+<div class="dev"><div class="name">iPhone 14</div>
+<div class="key">10.5s to card fields</div>
+<div class="row">Payment page <span>1.7s</span>. Price shown <span>5.0s</span>. Step 1 to step 2 <span>1.0s</span>.</div></div>
+</div>
+<p class="soft" style="margin-top:34px;font-size:22px">Homepage itself loads in 3.2 to 3.8 seconds on the same phones.</p>
+</div></section>
+
+<section class="dark" style="background:#0a1a40"><div class="wrap">
+<h2>Meta tracking, Pixel and CAPI, step by step</h2>
+<p class="soft">Every Pixel and CAPI call was captured and stopped at the network edge, so no test event reached Meta. Click ID came in through a test fbclid.</p>
+<div class="flow">
+<div class="step"><div class="dot ok"></div><div><div class="t">Landing: PageView and ViewContent</div><div class="s">Pixel and CAPI both fire with the same event ID, so they deduplicate. fbp and fbc present, fbclid kept in exact case. Match keys sent on CAPI.</div></div></div>
+<div class="step"><div class="dot ok"></div><div><div class="t">Enroll click: Enroll_CTA_Click and Clicked_on_Enroll</div><div class="s">Pixel and CAPI both fire, event IDs match.</div></div></div>
+<div class="step"><div class="dot no"></div><div><div class="t">Step 1 Continue, lead created: no Lead event</div><div class="s">Only Meta's automatic SubscribedButtonClick. Nothing on CAPI.</div></div></div>
+<div class="step"><div class="dot no"></div><div><div class="t">Step 2 Continue, plan chosen: no AddToCart</div><div class="s">Nothing on Pixel or CAPI.</div></div></div>
+<div class="step"><div class="dot no"></div><div><div class="t">Payment page and card form loaded: no InitiateCheckout</div><div class="s">Nothing on Pixel or CAPI in the 15 seconds after the card form was ready. It may be wired to the Pay button. Only a real purchase can show that.</div></div></div>
+<div class="step"><div class="dot na"></div><div><div class="t">Purchase: not tested</div><div class="s">Fires only after a real Airwallex or PayPal payment.</div></div></div>
+</div>
+<p class="soft" style="margin-top:30px;font-size:21px">Meta optimises on the events it receives. With nothing between the Enroll click and Purchase, the ad sets cannot learn who starts checkout.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>What to fix</h2>
+<ul class="big red">
+<li>Load the payment form during step 2, so the card fields are ready the moment the buyer lands. Today the price box reads Confirming tuition for about 5 seconds, then the card form stays blank for about 5 more.</li>
+<li>Fire Lead on step 1, AddToCart on step 2 and InitiateCheckout when the payment page opens, on both Pixel and CAPI, with the same event ID and the CRM order ID.</li>
+</ul>
+<h3>What works</h3>
+<ul class="big green">
+<li>Price is right on every screen: $79 today, then 4 times $169, $755 total.</li>
+<li>Promo code JULIE249 applies, and the Julie VIP masterclass shows as free.</li>
+<li>One lead is sent per submit, with no duplicates.</li>
+<li>Click ID and browser ID are captured correctly on landing.</li>
+</ul>
+</div></section>
+
+<section><div class="wrap">
+<h2>Print screens, in order</h2>
+<div class="tabs"><a href="#pro-max">iPhone 15 Pro Max</a><a href="#iphone-15">iPhone 15</a><a href="#iphone-14">iPhone 14</a></div>
+
+<h3 id="pro-max">iPhone 15 Pro Max</h3>
+<div class="shots">
+<figure><img loading="lazy" src="img/pro-max-1-home.jpg" alt="Homepage"><figcaption><span class="n">1</span>Homepage in the Facebook app browser</figcaption></figure>
+<figure><img loading="lazy" src="img/pro-max-2-details.jpg" alt="Your details"><figcaption><span class="n">2</span>Enroll opens on Your details</figcaption></figure>
+<figure><img loading="lazy" src="img/pro-max-3-filled.jpg" alt="Details filled"><figcaption><span class="n">3</span>Test details entered</figcaption></figure>
+<figure><img loading="lazy" src="img/pro-max-4-plan.jpg" alt="Plan and date"><figcaption><span class="n">4</span>Plan and date, $79 today</figcaption></figure>
+<figure><img loading="lazy" src="img/pro-max-5-payment.jpg" alt="Payment page"><figcaption><span class="n">5</span>Payment page with price confirmed</figcaption></figure>
+<figure><img loading="lazy" src="img/pro-max-6-card-fields.jpg" alt="Card fields"><figcaption><span class="n">6</span>Live Airwallex card form</figcaption></figure>
+<figure><img loading="lazy" src="img/pro-max-7-summary.jpg" alt="Order summary"><figcaption><span class="n">7</span>Order summary</figcaption></figure>
+</div>
+
+<h3 id="iphone-15">iPhone 15</h3>
+<div class="shots">
+<figure><img loading="lazy" src="img/iphone-15-1-home.jpg" alt="Homepage"><figcaption><span class="n">1</span>Homepage in the Facebook app browser</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-15-2-details.jpg" alt="Your details"><figcaption><span class="n">2</span>Enroll opens on Your details</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-15-3-filled.jpg" alt="Details filled"><figcaption><span class="n">3</span>Test details entered</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-15-4-plan.jpg" alt="Plan and date"><figcaption><span class="n">4</span>Plan and date, $79 today</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-15-5-payment.jpg" alt="Payment page"><figcaption><span class="n">5</span>Payment page with price confirmed</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-15-6-card-fields.jpg" alt="Card fields"><figcaption><span class="n">6</span>Live Airwallex card form</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-15-7-summary.jpg" alt="Order summary"><figcaption><span class="n">7</span>Order summary</figcaption></figure>
+</div>
+
+<h3 id="iphone-14">iPhone 14</h3>
+<div class="shots">
+<figure><img loading="lazy" src="img/iphone-14-1-home.jpg" alt="Homepage"><figcaption><span class="n">1</span>Homepage in the Facebook app browser</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-14-2-details.jpg" alt="Your details"><figcaption><span class="n">2</span>Enroll opens on Your details</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-14-3-filled.jpg" alt="Details filled"><figcaption><span class="n">3</span>Test details entered</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-14-4-plan.jpg" alt="Plan and date"><figcaption><span class="n">4</span>Plan and date, $79 today</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-14-5-payment.jpg" alt="Payment page"><figcaption><span class="n">5</span>Payment page with price confirmed</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-14-6-card-fields.jpg" alt="Card fields"><figcaption><span class="n">6</span>Live Airwallex card form</figcaption></figure>
+<figure><img loading="lazy" src="img/iphone-14-7-summary.jpg" alt="Order summary"><figcaption><span class="n">7</span>Order summary</figcaption></figure>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Left behind</h2>
+<ul class="big">
+<li>Test leads named Test Audit GiTA, email gita.checkout.audit@example.com, are in eTeacher's lead system. They should be removed.</li>
+<li>No test event reached Meta. No card entered, nothing charged.</li>
+</ul>
+</div></section>
+
+<footer><div class="wrap">GiTA. Checkout audit, Longevity Life Academy, 11 November 2026.</div></footer>
+</body>
+</html>
